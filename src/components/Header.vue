@@ -5,13 +5,13 @@
         <ul class="list menu-list">
           <li>
             <menu-button className="menu-list__link_logo">
-              <img :src="iconPaths['logo']" alt="Trivio" />
+              <img :src="getImageUrl('logo')" alt=" Trivio" />
             </menu-button>
           </li>
           <li v-for="(item, idx) of menu" :key="idx" @click="() => setSelected(item)">
             <menu-button
               :class="`${item === selected && item !== `Пакеты услуг` ? `menu-list__link_selected` : ``} ${item === `Пакеты услуг` ? `menu-list__link_services` : ``}`">
-              <img v-if="item === `Пакеты услуг`" :src="iconPaths['cart']" alt="cart" />
+              <img v-if="item === `Пакеты услуг`" :src="getImageUrl('cart')" alt="cart" />
               {{ item }}
             </menu-button>
           </li>
@@ -21,7 +21,7 @@
       <ul class="list cabinet-list">
         <li v-for="{ icon, alt } of icons" :key="icon" class="cabinet-list__item">
           <button class="cabinet-list__btn">
-            <img :src="iconPaths[icon]" :alt="`${alt}`">
+            <img :src="getImageUrl(icon)" :alt="`${alt}`">
           </button>
           <span v-if="icon === `clock`" class="badge badge_history">3</span>
           <span v-if="icon === `envelope`" class="badge badge_messages">&#8226;</span>
@@ -51,13 +51,6 @@
 import { ref } from "vue";
 import MenuButton from "./MenuButton.vue";
 import Profile from "./Profile.vue";
-
-const icons = import.meta.globEager("../assets/**/*.svg");
-const iconPaths = {};
-Object.values(icons).forEach(module => {
-  const iconName = module.default.slice(module.default.lastIndexOf("/") + 1).replace(/\.svg/, "");
-  iconPaths[iconName] = new URL(module.default, import.meta.url).href;
-});
 
 export default {
   components: { MenuButton, Profile },
@@ -91,7 +84,6 @@ export default {
       lang: "ru",
       username: "Admin Admin",
       isProfileOpened: ref(false),
-      iconPaths
     };
   },
 
@@ -102,6 +94,9 @@ export default {
     setLang(value) {
       this.lang = value;
     },
+    getImageUrl(name) {
+      return new URL(`../assets/icons/${name}.svg`, import.meta.url).href;
+    }
   },
 
   computed: {
