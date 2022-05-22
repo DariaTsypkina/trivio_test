@@ -5,13 +5,13 @@
         <ul class="list menu-list">
           <li>
             <menu-button className="menu-list__link_logo">
-              <img src="/src/assets/icons/logo.svg" alt="Trivio" />
+              <img :src="iconPaths['logo']" alt="Trivio" />
             </menu-button>
           </li>
           <li v-for="(item, idx) of menu" :key="idx" @click="() => setSelected(item)">
             <menu-button
               :class="`${item === selected && item !== `Пакеты услуг` ? `menu-list__link_selected` : ``} ${item === `Пакеты услуг` ? `menu-list__link_services` : ``}`">
-              <img v-if="item === `Пакеты услуг`" src="/src/assets/icons/cart.svg" alt="cart" />
+              <img v-if="item === `Пакеты услуг`" :src="iconPaths['cart']" alt="cart" />
               {{ item }}
             </menu-button>
           </li>
@@ -56,7 +56,7 @@ const icons = import.meta.globEager("../assets/**/*.svg");
 const iconPaths = {};
 Object.values(icons).forEach(module => {
   const iconName = module.default.slice(module.default.lastIndexOf("/") + 1).replace(/\.svg/, "");
-  iconPaths[iconName] = module.default;
+  iconPaths[iconName] = new URL(module.default, import.meta.url).href;
 });
 
 export default {
