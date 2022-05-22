@@ -39,7 +39,7 @@
         <li class="cabinet-list__item">
           <button class="cabinet-list__btn cabinet-list__btn_lang"
             @click="() => lang === `ru` ? setLang(`eng`) : setLang(`ru`)">
-            <img :src="`/src/assets/icons/${lang}.svg`" :alt="`${lang}`">
+            <img :src="getImageUrl(lang)" :alt="`${lang}`">
           </button>
         </li>
       </ul>
