@@ -21,7 +21,7 @@
       <ul class="list cabinet-list">
         <li v-for="{ icon, alt } of icons" :key="icon" class="cabinet-list__item">
           <button class="cabinet-list__btn">
-            <img :src="`/src/assets/icons/${icon}.svg`" :alt="`${alt}`">
+            <img :src="iconPaths[icon]" :alt="`${alt}`">
           </button>
           <span v-if="icon === `clock`" class="badge badge_history">3</span>
           <span v-if="icon === `envelope`" class="badge badge_messages">&#8226;</span>
@@ -51,6 +51,13 @@
 import { ref } from "vue";
 import MenuButton from "./MenuButton.vue";
 import Profile from "./Profile.vue";
+
+const icons = import.meta.globEager("../assets/**/*.svg");
+const iconPaths = {};
+Object.values(icons).forEach(module => {
+  const iconName = module.default.slice(module.default.lastIndexOf("/") + 1).replace(/\.svg/, "");
+  iconPaths[iconName] = module.default;
+});
 
 export default {
   components: { MenuButton, Profile },
@@ -83,7 +90,8 @@ export default {
       ],
       lang: "ru",
       username: "Admin Admin",
-      isProfileOpened: ref(false)
+      isProfileOpened: ref(false),
+      iconPaths
     };
   },
 
@@ -101,7 +109,7 @@ export default {
       const name = this.username.split(" ")[0].toLowerCase();
       const surname = this.username.split(" ")[1].toLowerCase();
       return name.charAt(0) + surname.charAt(0);
-    }
+    },
   },
 };
 </script>
