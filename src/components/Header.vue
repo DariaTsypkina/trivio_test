@@ -56,7 +56,7 @@ const icons = import.meta.globEager("../assets/**/*.svg");
 const iconPaths = {};
 Object.values(icons).forEach(module => {
   const iconName = module.default.slice(module.default.lastIndexOf("/") + 1).replace(/\.svg/, "");
-  iconPaths[iconName] = new URL(module.default, import.meta.url);
+  iconPaths[iconName] = new URL(module.default, import.meta.url).href;
 });
 
 export default {
