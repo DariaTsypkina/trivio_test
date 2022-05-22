@@ -5,13 +5,13 @@
         <ul class="list menu-list">
           <li>
             <menu-button className="menu-list__link_logo">
-              <img src="src/assets/icons/logo.svg" alt="Trivio" />
+              <img src="/src/assets/icons/logo.svg" alt="Trivio" />
             </menu-button>
           </li>
           <li v-for="(item, idx) of menu" :key="idx" @click="() => setSelected(item)">
             <menu-button
               :class="`${item === selected && item !== `Пакеты услуг` ? `menu-list__link_selected` : ``} ${item === `Пакеты услуг` ? `menu-list__link_services` : ``}`">
-              <img v-if="item === `Пакеты услуг`" src="src/assets/icons/cart.svg" alt="cart" />
+              <img v-if="item === `Пакеты услуг`" src="/src/assets/icons/cart.svg" alt="cart" />
               {{ item }}
             </menu-button>
           </li>
@@ -21,7 +21,7 @@
       <ul class="list cabinet-list">
         <li v-for="{ icon, alt } of icons" :key="icon" class="cabinet-list__item">
           <button class="cabinet-list__btn">
-            <img :src="`src/assets/icons/${icon}.svg`" :alt="`${alt}`">
+            <img :src="`/src/assets/icons/${icon}.svg`" :alt="`${alt}`">
           </button>
           <span v-if="icon === `clock`" class="badge badge_history">3</span>
           <span v-if="icon === `envelope`" class="badge badge_messages">&#8226;</span>
@@ -39,7 +39,7 @@
         <li class="cabinet-list__item">
           <button class="cabinet-list__btn cabinet-list__btn_lang"
             @click="() => lang === `ru` ? setLang(`eng`) : setLang(`ru`)">
-            <img :src="`src/assets/icons/${lang}.svg`" :alt="`${lang}`">
+            <img :src="`/src/assets/icons/${lang}.svg`" :alt="`${lang}`">
           </button>
         </li>
       </ul>
