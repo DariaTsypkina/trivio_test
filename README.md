@@ -1,6 +1,6 @@
 # trivio_test
 
-You can see project here: [a link](https://dariatsypkina.github.io/trivio_test)
+You can see project here: [GH-PAGES](https://dariatsypkina.github.io/trivio_test)
 
 ## Project Setup
 
