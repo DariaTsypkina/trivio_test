@@ -53,6 +53,11 @@ export default {
     }
   }
 
+  &_logo>img {
+    width: 80px;
+    height: 20px;
+  }
+
   &_services {
     padding: 8px 12px;
 
@@ -65,6 +70,11 @@ export default {
     &:hover {
       background-color: $gray;
       transition: background-color .4s;
+    }
+
+    &>img {
+      width: 16px;
+      height: 16px;
     }
   }
 }

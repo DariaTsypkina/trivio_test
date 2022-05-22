@@ -172,6 +172,8 @@ export default {
     cursor: pointer;
 
     &>img {
+      width: 16px;
+      height: 16px;
       vertical-align: middle;
     }
 
